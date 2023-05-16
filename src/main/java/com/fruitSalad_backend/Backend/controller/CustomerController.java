@@ -21,7 +21,7 @@ public class CustomerController {
         return "New customer registered";
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("")
     public List<Customer> list(){
         return customerService.getAllCustomers();
     }

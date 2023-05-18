@@ -21,6 +21,11 @@ public class CustomerController {
         return "New customer registered";
     }
 
+    @PostMapping("/login")
+    public String login(@RequestBody Customer customer) {
+        return "customerService.loginCustomer(customer)";
+    }
+
     @GetMapping("")
     public List<Customer> list(){
         return customerService.getAllCustomers();

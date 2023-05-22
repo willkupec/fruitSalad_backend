@@ -1,58 +1,14 @@
 package com.fruitSalad_backend.Backend.model;
 
-import jakarta.persistence.*;
-
-@Entity
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-
-    public Customer() {
-
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+public interface Customer {
+    public int getId();
+    public void setId(int id);
+    public String getFirstName();
+    public void setFirstName(String firstName);
+    public String getLastName();
+    public void setLastName(String lastName);
+    public String getEmail();
+    public void setEmail(String email);
+    public String getPassword();
+    public void setPassword(String password);
 }

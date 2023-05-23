@@ -4,10 +4,10 @@ package com.fruitSalad_backend.Backend.controller;
 import com.fruitSalad_backend.Backend.dto.AuthResponseDto;
 import com.fruitSalad_backend.Backend.dto.LoginDto;
 import com.fruitSalad_backend.Backend.dto.RegisterDto;
-import com.fruitSalad_backend.Backend.model.CustomerImpl;
+import com.fruitSalad_backend.Backend.model.Customer;
 import com.fruitSalad_backend.Backend.repository.CustomerRepository;
 import com.fruitSalad_backend.Backend.security.JwtGenerator;
-import com.fruitSalad_backend.Backend.service.CustomerService;
+import com.fruitSalad_backend.Backend.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +35,7 @@ public class CustomerController {
     private JwtGenerator jwtGenerator;
 
     @Autowired
-    private CustomerService customerService;
+    private ICustomerService customerService;
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto) {
@@ -43,7 +43,9 @@ public class CustomerController {
             return new ResponseEntity<>("Username is taken!", HttpStatus.BAD_REQUEST);
         }
 
-        CustomerImpl customer = new CustomerImpl();
+        Customer customer = new Customer();
+        customer.setFirstName(registerDto.getFirstName());
+        customer.setLastName(registerDto.getLastName());
         customer.setEmail(registerDto.getEmail());
         customer.setPassword(passwordEncoder.encode((registerDto.getPassword())));
 
@@ -64,7 +66,8 @@ public class CustomerController {
     }
 
     @GetMapping("")
-    public List<CustomerImpl> list(){
+    public List<Customer> list(){
+
         return customerService.getAllCustomers();
     }
 

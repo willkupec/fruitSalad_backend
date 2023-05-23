@@ -1,7 +1,7 @@
 package com.fruitSalad_backend.Backend.security;
 
 import com.fruitSalad_backend.Backend.model.CustomerDetails;
-import com.fruitSalad_backend.Backend.model.CustomerImpl;
+import com.fruitSalad_backend.Backend.model.Customer;
 import com.fruitSalad_backend.Backend.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +21,7 @@ public class CustomerDetailsService implements UserDetailsService {
 
     @Override
     public CustomerDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        CustomerImpl customer = customerRepo.findByEmail(username);
+        Customer customer = customerRepo.findByEmail(username);
         if (customer == null) {
             throw new UsernameNotFoundException("User not found");
         }

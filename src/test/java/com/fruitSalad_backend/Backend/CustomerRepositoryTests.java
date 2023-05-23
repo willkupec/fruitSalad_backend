@@ -2,7 +2,7 @@ package com.fruitSalad_backend.Backend;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.fruitSalad_backend.Backend.model.CustomerImpl;
+import com.fruitSalad_backend.Backend.model.Customer;
 import com.fruitSalad_backend.Backend.repository.CustomerRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +25,15 @@ public class CustomerRepositoryTests {
 
     @Test
     public void registerCustomerTest() {
-        CustomerImpl customer = new CustomerImpl();
+        Customer customer = new Customer();
         customer.setEmail("willk@gmail.com");
         customer.setPassword("abc");
         customer.setFirstName("Will");
         customer.setLastName("Kupec");
 
-        CustomerImpl savedCustomer = repo.save(customer);
+        Customer savedCustomer = repo.save(customer);
 
-        CustomerImpl existCustomer = entityManager.find(CustomerImpl.class, savedCustomer.getId());
+        Customer existCustomer = entityManager.find(Customer.class, savedCustomer.getId());
 
         assertThat(customer.getEmail()).isEqualTo(existCustomer.getEmail());
 

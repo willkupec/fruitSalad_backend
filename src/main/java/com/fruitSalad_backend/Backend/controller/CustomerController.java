@@ -25,9 +25,13 @@ import java.util.List;
 @CrossOrigin
 public class CustomerController {
 
+    @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
     private JwtGenerator jwtGenerator;
 
     @Autowired

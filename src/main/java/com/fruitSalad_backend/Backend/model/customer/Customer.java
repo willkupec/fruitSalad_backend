@@ -3,6 +3,7 @@ package com.fruitSalad_backend.Backend.model.customer;
 import com.fruitSalad_backend.Backend.model.cartItem.CartItem;
 import jakarta.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Customer implements ICustomer {
@@ -13,11 +14,10 @@ public class Customer implements ICustomer {
     private String lastName;
     private String email;
     private String password;
-    private ArrayList<CartItem> cart;
+    @ElementCollection(targetClass = CartItem.class)
+    private ArrayList<CartItem> cart = new ArrayList<CartItem>();
 
-    public Customer() {
-        cart = new ArrayList<CartItem>();
-    }
+    public Customer() {}
 
     @Override
     public int getId() {

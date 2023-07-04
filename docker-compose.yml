@@ -1,0 +1,41 @@
+version: "1.0"
+
+services:
+  database:
+    platform: linux/x86_64
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./:/app/
+    environment:
+      MYSQL_DATABASE: fruitsalad
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234
+    networks:
+      - internal
+
+  app:
+    container_name: Backend
+    command: java -jar target/demo-0.0.1-SNAPSHOT.jar
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    volumes:
+      - ./:/app/app
+    links:
+      - database
+    networks:
+      - internal
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/demo?useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+
+networks:
+  internal:
+    name: internal

@@ -1,5 +1,6 @@
 package com.fruitSalad_backend.Backend.security;
 
+import com.fruitSalad_backend.Backend.service.CustomerDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

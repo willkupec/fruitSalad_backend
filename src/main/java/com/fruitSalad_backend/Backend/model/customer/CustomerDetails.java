@@ -1,4 +1,4 @@
-package com.fruitSalad_backend.Backend.model;
+package com.fruitSalad_backend.Backend.model.customer;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

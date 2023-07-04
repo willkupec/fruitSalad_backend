@@ -1,7 +1,7 @@
-package com.fruitSalad_backend.Backend.security;
+package com.fruitSalad_backend.Backend.service;
 
-import com.fruitSalad_backend.Backend.model.CustomerDetails;
-import com.fruitSalad_backend.Backend.model.Customer;
+import com.fruitSalad_backend.Backend.model.customer.CustomerDetails;
+import com.fruitSalad_backend.Backend.model.customer.Customer;
 import com.fruitSalad_backend.Backend.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;

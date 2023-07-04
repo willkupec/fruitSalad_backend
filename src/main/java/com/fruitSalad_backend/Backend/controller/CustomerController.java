@@ -4,7 +4,8 @@ package com.fruitSalad_backend.Backend.controller;
 import com.fruitSalad_backend.Backend.dto.AuthResponseDto;
 import com.fruitSalad_backend.Backend.dto.LoginDto;
 import com.fruitSalad_backend.Backend.dto.RegisterDto;
-import com.fruitSalad_backend.Backend.model.Customer;
+import com.fruitSalad_backend.Backend.model.cartItem.CartItem;
+import com.fruitSalad_backend.Backend.model.customer.Customer;
 import com.fruitSalad_backend.Backend.repository.CustomerRepository;
 import com.fruitSalad_backend.Backend.security.JwtGenerator;
 import com.fruitSalad_backend.Backend.service.ICustomerService;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.authentication.AuthenticationManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -55,7 +57,7 @@ public class CustomerController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponseDto> login(@RequestBody LoginDto loginDto){
+    public ResponseEntity<AuthResponseDto> login(@RequestBody LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginDto.getEmail(),
@@ -66,9 +68,18 @@ public class CustomerController {
     }
 
     @GetMapping("")
-    public List<Customer> list(){
-
+    public List<Customer> list() {
         return customerService.getAllCustomers();
     }
+
+    @GetMapping("/{id}")
+    public Customer getById(@PathVariable("id") int id) {
+        return customerService.getCustomerById(id);
+    }
+
+/*    @GetMapping("/{id}")
+    public ArrayList<CartItem> listCart() {
+        return customerService.getCart();
+    }*/
 
 }

@@ -1,5 +1,6 @@
 package com.fruitSalad_backend.Backend.security;
 
+import com.fruitSalad_backend.Backend.service.CustomerDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

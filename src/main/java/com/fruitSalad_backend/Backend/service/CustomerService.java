@@ -40,20 +40,4 @@ public class CustomerService implements ICustomerService {
         return customerRepository.findById(id);
     }
 
-/*    @Override
-    public CartItem addToCart(CartItem cartItem) {
-        return customerRepository.save(customer);
-    }
-
-    @Override
-    public CartItem removeFromCart(int id) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<CartItem> getCart() {
-        return customerRepository.findAll();
-    }*/
-
-
 }

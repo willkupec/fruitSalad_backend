@@ -2,6 +2,7 @@ package com.fruitSalad_backend.Backend.model.customer;
 
 import com.fruitSalad_backend.Backend.model.cartItem.CartItem;
 import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,8 @@ public class Customer implements ICustomer {
     @ElementCollection(targetClass = CartItem.class)
     private List<CartItem> cart = new ArrayList<CartItem>();
 
-    public Customer() {}
+    public Customer() {
+    }
 
     @Override
     public int getId() {
@@ -77,5 +79,14 @@ public class Customer implements ICustomer {
     @Override
     public void setCart(List<CartItem> cart) {
         this.cart = cart;
+    }
+
+    @Override
+    public String toString() {
+        return "id: " + id + "\n" +
+                "firstName: " + firstName + "\n" +
+                "lastName: " + lastName + "\n" +
+                "email: " + email + "\n" +
+                "password: " + password + "\n";
     }
 }

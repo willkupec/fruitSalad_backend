@@ -33,17 +33,23 @@ public class CustomerController {
         return new ResponseEntity<>("User registered!", HttpStatus.OK);
     }
 
-/*    @PostMapping("/login")
-    public ResponseEntity<AuthResponseDto> login(@RequestBody LoginDto loginDto) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginDto.getEmail(),
-                        loginDto.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtGenerator.generateToken(authentication);
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody Customer customer) {
 
-        return new ResponseEntity<>(new AuthResponseDto(token), HttpStatus.OK);
-    }*/
+        String email = customer.getEmail();
+
+        if (customerRepository.findByEmail(email) == null) {
+            return new ResponseEntity<String>("Customer doesn't exist", HttpStatus.NOT_FOUND);
+        }
+
+        Customer foundCustomer = customerRepository.findByEmail(email);
+
+        if (foundCustomer != null) {
+            return new ResponseEntity<Customer>(foundCustomer, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Unable to login.", HttpStatus.UNAUTHORIZED);
+        }
+    }
 
     @GetMapping("")
     public List<Customer> list() {

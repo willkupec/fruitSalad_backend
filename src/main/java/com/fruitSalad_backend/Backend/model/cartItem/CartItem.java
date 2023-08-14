@@ -7,10 +7,9 @@ public class CartItem implements ICartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+    private String title;
     private double price;
-    private String size;
-    private int quantity;
+    private String src;
 
     public CartItem() {
 
@@ -27,13 +26,13 @@ public class CartItem implements ICartItem {
     }
 
     @Override
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     @Override
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
@@ -47,22 +46,12 @@ public class CartItem implements ICartItem {
     }
 
     @Override
-    public String getSize() {
-        return size;
+    public String getSrc() {
+        return src;
     }
 
     @Override
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    @Override
-    public int getQuantity() {
-        return quantity;
-    }
-
-    @Override
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setSrc(String src) {
+        this.src = src;
     }
 }

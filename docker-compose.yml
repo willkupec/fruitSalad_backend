@@ -1,10 +1,14 @@
 version: "1.0"
 
+volumes:
+  mysql_data:
+    driver: local
+
 services:
   database:
     platform: linux/x86_64
     image: mysql:8.0
-    container_name: mysql
+    container_name: database
     ports:
       - "3306:3306"
     volumes:
@@ -35,6 +39,25 @@ services:
       - internal
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/demo?useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0.1
+    environment:
+      DB_VENDOR: MYSQL
+      DB_ADDR: database
+      DB_DATABASE: fruitsalad
+      DB_USER: root
+      DB_PASSWORD: 1234
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      #KEYCLOAK_ADMIN: admin
+      #KEYCLOAK_ADMIN_PASSWORD: admin
+      #KC_HOSTNAME_ADMIN_URL: http://localhost:8085
+    ports:
+      - 8085:8085
+    depends_on:
+      - database
+    command: start-dev
 
 networks:
   internal:

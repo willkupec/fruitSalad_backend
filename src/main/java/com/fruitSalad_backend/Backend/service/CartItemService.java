@@ -32,7 +32,6 @@ public class CartItemService implements ICartItemService {
 
     @Override
     public CartItem getCartItemById(int id) {
-        System.out.println(id);
         return cartItemRepository.findById(id);
     }
 }

@@ -8,7 +8,7 @@ COPY src src
 
 RUN ./mvnw install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
-#RUN -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 -d mysql:latest
+# RUN -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 -d mysql:8.0
 
 FROM openjdk:20-jdk-slim
 VOLUME /tmp

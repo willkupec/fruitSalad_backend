@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductProducer {
 
-    @Value("cartItem_exchange")
+    @Value("product_exchange")
     private String exchange;
 
-    @Value("cartItem_routing_key")
+    @Value("product_routing_key")
     private String routingKey;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductProducer.class);

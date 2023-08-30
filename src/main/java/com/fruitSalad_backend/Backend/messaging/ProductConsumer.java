@@ -13,12 +13,12 @@ public class ProductConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductConsumer.class);
 
     @Autowired
-    private ICartItemService cartItemService;
+    private ICartItemService productService;
 
-    @RabbitListener(queues = {"cartItem"})
+    @RabbitListener(queues = {"product"})
     public void consume(String message){
 
         LOGGER.info(String.format("Received message -> %s", message));
-        cartItemService.getCartItemById(1);
+        productService.getCartItemById(1);
     }
 }

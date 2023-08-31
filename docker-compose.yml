@@ -10,7 +10,7 @@ services:
     image: mysql:8.0
     container_name: mysql
     ports:
-      - "3346:3306"
+      - "3306:3306"
     volumes:
       - ./:/app/
     environment:
@@ -37,6 +37,8 @@ services:
       - internal
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/fruitsalad?useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      - spring_rabbitmq_host=rabbitmq-container
+      - spring_rabbitmq_port=5672
 
   rabbitmq:
     container_name: rabbitmq

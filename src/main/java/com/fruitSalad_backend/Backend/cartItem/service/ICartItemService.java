@@ -1,7 +1,6 @@
-package com.fruitSalad_backend.Backend.service;
+package com.fruitSalad_backend.Backend.cartItem.service;
 
-import com.fruitSalad_backend.Backend.model.cartItem.CartItem;
-import com.fruitSalad_backend.Backend.model.customer.Customer;
+import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
 
 import java.util.List;
 

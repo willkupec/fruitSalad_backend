@@ -1,4 +1,4 @@
-package com.fruitSalad_backend.Backend.messaging;
+package com.fruitSalad_backend.Backend.cartItem.messaging;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

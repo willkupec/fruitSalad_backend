@@ -1,6 +1,6 @@
-package com.fruitSalad_backend.Backend.repository;
+package com.fruitSalad_backend.Backend.customer.repository;
 
-import com.fruitSalad_backend.Backend.model.customer.Customer;
+import com.fruitSalad_backend.Backend.customer.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

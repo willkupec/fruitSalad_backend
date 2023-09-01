@@ -1,4 +1,4 @@
-package com.fruitSalad_backend.Backend.model.cartItem;
+package com.fruitSalad_backend.Backend.cartItem.model;
 
 import jakarta.persistence.*;
 

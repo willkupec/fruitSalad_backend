@@ -1,4 +1,4 @@
-package com.fruitSalad_backend.Backend.controller;
+package com.fruitSalad_backend.Backend.customer.controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -8,7 +8,7 @@ public class HomeController {
 
     @GetMapping("")
     public String viewHomePage() {
-        return "fruitSalad API Running";
+        return "API Running";
     }
 
 }

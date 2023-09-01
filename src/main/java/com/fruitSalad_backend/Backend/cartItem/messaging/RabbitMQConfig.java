@@ -1,4 +1,4 @@
-package com.fruitSalad_backend.Backend.messaging;
+package com.fruitSalad_backend.Backend.cartItem.messaging;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

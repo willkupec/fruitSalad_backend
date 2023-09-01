@@ -1,11 +1,10 @@
-package com.fruitSalad_backend.Backend.controller;
+package com.fruitSalad_backend.Backend.cartItem.controller;
 
 
-import com.fruitSalad_backend.Backend.messaging.CartItemProducer;
-import com.fruitSalad_backend.Backend.messaging.UpdateCartItemProducer;
-import com.fruitSalad_backend.Backend.model.cartItem.CartItem;
-import com.fruitSalad_backend.Backend.repository.CartItemRepository;
-import com.fruitSalad_backend.Backend.service.ICartItemService;
+import com.fruitSalad_backend.Backend.cartItem.messaging.CartItemProducer;
+import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
+import com.fruitSalad_backend.Backend.cartItem.repository.CartItemRepository;
+import com.fruitSalad_backend.Backend.cartItem.service.ICartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

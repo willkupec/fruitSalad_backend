@@ -1,8 +1,7 @@
-package com.fruitSalad_backend.Backend.model.customer;
+package com.fruitSalad_backend.Backend.customer.model;
 
-import com.fruitSalad_backend.Backend.model.cartItem.CartItem;
+import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface ICustomer {

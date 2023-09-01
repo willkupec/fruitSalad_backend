@@ -9,4 +9,5 @@ public interface ICartItem {
     public void setPrice(double price);
     public String getSrc();
     public void setSrc(String src);
+    public String toString();
 }

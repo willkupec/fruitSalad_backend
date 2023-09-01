@@ -54,4 +54,9 @@ public class CartItem implements ICartItem {
     public void setSrc(String src) {
         this.src = src;
     }
+
+    @Override
+    public String toString() {
+        return "\nid: " + id + "\ntitle: " + title + "\nprice: " + price + "\nsrc: " + src;
+    }
 }

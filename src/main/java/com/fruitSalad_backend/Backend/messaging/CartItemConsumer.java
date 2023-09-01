@@ -8,17 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductConsumer {
+public class CartItemConsumer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductConsumer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CartItemConsumer.class);
 
     @Autowired
-    private ICartItemService productService;
+    private ICartItemService cartItemService;
 
-    @RabbitListener(queues = {"product"})
+    @RabbitListener(queues = {"cartItem"})
     public void consume(String message){
 
         LOGGER.info(String.format("Received message -> %s", message));
-        productService.getCartItemById(1);
+        cartItemService.getCartItemById(1);
     }
 }

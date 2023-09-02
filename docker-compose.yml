@@ -39,13 +39,13 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/fruitsalad?useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - spring_rabbitmq_host=rabbitmq-container
+      - spring_rabbitmq_host=rabbitmq
       - spring_rabbitmq_port=5672
 
   rabbitmq:
     container_name: rabbitmq
     image: rabbitmq:3.12.2-management
-    hostname: rabbitmq-container
+    hostname: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"

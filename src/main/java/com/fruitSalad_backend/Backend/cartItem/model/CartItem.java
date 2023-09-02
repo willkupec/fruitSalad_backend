@@ -1,4 +1,4 @@
-package com.fruitSalad_backend.Backend.model.cartItem;
+package com.fruitSalad_backend.Backend.cartItem.model;
 
 import jakarta.persistence.*;
 
@@ -53,5 +53,10 @@ public class CartItem implements ICartItem {
     @Override
     public void setSrc(String src) {
         this.src = src;
+    }
+
+    @Override
+    public String toString() {
+        return "\nid: " + id + "\ntitle: " + title + "\nprice: " + price + "\nsrc: " + src;
     }
 }

@@ -1,6 +1,6 @@
-package com.fruitSalad_backend.Backend.repository;
+package com.fruitSalad_backend.Backend.cartItem.repository;
 
-import com.fruitSalad_backend.Backend.model.cartItem.CartItem;
+import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

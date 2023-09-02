@@ -1,9 +1,9 @@
-package com.fruitSalad_backend.Backend.controller;
+package com.fruitSalad_backend.Backend.customer.controller;
 
 
-import com.fruitSalad_backend.Backend.model.customer.Customer;
-import com.fruitSalad_backend.Backend.repository.CustomerRepository;
-import com.fruitSalad_backend.Backend.service.ICustomerService;
+import com.fruitSalad_backend.Backend.customer.model.Customer;
+import com.fruitSalad_backend.Backend.customer.repository.CustomerRepository;
+import com.fruitSalad_backend.Backend.customer.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

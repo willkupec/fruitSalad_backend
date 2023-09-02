@@ -1,4 +1,4 @@
-package com.fruitSalad_backend.Backend.model.cartItem;
+package com.fruitSalad_backend.Backend.cartItem.model;
 
 public interface ICartItem {
     public int getId();
@@ -9,4 +9,5 @@ public interface ICartItem {
     public void setPrice(double price);
     public String getSrc();
     public void setSrc(String src);
+    public String toString();
 }

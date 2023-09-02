@@ -1,4 +1,4 @@
-version: "1.0"
+version: "3.9"
 
 volumes:
   mysql_data:
@@ -12,7 +12,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./:/app/
+      - ./:/fruitSalad/
     environment:
       MYSQL_DATABASE: fruitsalad
       MYSQL_ROOT_PASSWORD: 1234
@@ -21,7 +21,7 @@ services:
 
   app:
     container_name: Backend
-    command: java -jar target/demo-0.0.1-SNAPSHOT.jar
+    command: java -jar target/Backend-0.0.1-SNAPSHOT.jar
     build:
       context: .
       dockerfile: Dockerfile
@@ -29,14 +29,16 @@ services:
       - "8080:8080"
     depends_on:
       - mysql
+      - rabbitmq
     volumes:
-      - ./:/app/app
+      - ./:/fruitSalad/app
     links:
       - mysql
     networks:
       - internal
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/fruitsalad?useSSL=false&allowPublicKeyRetrieval=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - spring_rabbitmq_host=rabbitmq-container
       - spring_rabbitmq_port=5672
 

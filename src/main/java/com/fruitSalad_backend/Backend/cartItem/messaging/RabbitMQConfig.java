@@ -14,27 +14,16 @@ public class RabbitMQConfig {
     @Value("cartItem")
     private String queue;
 
-/*    @Value("item")
-    private String itemQueue;*/
-
     @Value("cartItem_exchange")
     private String exchange;
 
     @Value("cartItem_routing_key")
     private String routingKey;
 
-/*    @Value("item_routing_key")
-    private String itemRoutingKey;*/
-
     @Bean
     public Queue queue(){
         return new Queue(queue);
     }
-
-/*    @Bean
-    public Queue itemQueue(){
-        return new Queue(itemQueue);
-    }*/
 
     @Bean
     public TopicExchange exchange(){
@@ -48,13 +37,4 @@ public class RabbitMQConfig {
                 .to(exchange())
                 .with(routingKey);
     }
-
-/*    @Bean
-    public Binding itemBinding(){
-        return BindingBuilder
-                .bind(itemQueue())
-                .to(exchange())
-                .with(itemRoutingKey);
-    }*/
-
 }

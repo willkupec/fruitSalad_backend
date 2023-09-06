@@ -17,8 +17,6 @@ public class CartItemConsumer {
 
     @RabbitListener(queues = {"cartItem"})
     public void consume(String message){
-
         LOGGER.info(String.format("Received message -> %s", message));
-        cartItemService.getCartItemById(1);
     }
 }

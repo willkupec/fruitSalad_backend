@@ -66,8 +66,8 @@ public class AddressController {
         return addressService.getAddressById(id);
     }
 
-    @GetMapping("/{customer}")
-    public Address getByCustomer(@PathVariable("customer") String customer) {
+    @GetMapping("/customer")
+    public Address getByCustomer(@RequestBody String customer) {
         try {
             addressProducer.sendMessage("Got address by customer");
         } catch (Exception e) {
@@ -75,5 +75,4 @@ public class AddressController {
         }
         return addressService.getAddressByCustomer(customer);
     }
-
 }

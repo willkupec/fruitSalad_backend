@@ -9,32 +9,32 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RabbitMQConfig {
+public class CheckoutRMQConfig {
 
     @Value("address")
-    private String queue;
+    private String addressQueue;
 
     @Value("address_exchange")
-    private String exchange;
+    private String addressExchange;
 
     @Value("address_routing_key")
-    private String routingKey;
+    private String addressRoutingKey;
 
     @Bean
-    public Queue queue(){
-        return new Queue(queue);
+    public Queue addressQueue(){
+        return new Queue(addressQueue);
     }
 
     @Bean
-    public TopicExchange exchange(){
-        return new TopicExchange(exchange);
+    public TopicExchange addressExchange(){
+        return new TopicExchange(addressExchange);
     }
 
     @Bean
     public Binding binding(){
         return BindingBuilder
-                .bind(queue())
-                .to(exchange())
-                .with(routingKey);
+                .bind(addressQueue())
+                .to(addressExchange())
+                .with(addressRoutingKey);
     }
 }

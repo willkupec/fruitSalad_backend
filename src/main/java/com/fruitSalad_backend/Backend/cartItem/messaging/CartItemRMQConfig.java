@@ -9,32 +9,32 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RabbitMQConfig {
+public class CartItemRMQConfig {
 
     @Value("cartItem")
-    private String queue;
+    private String cartItemQueue;
 
     @Value("cartItem_exchange")
-    private String exchange;
+    private String cartItemExchange;
 
     @Value("cartItem_routing_key")
-    private String routingKey;
+    private String cartItemRoutingKey;
 
     @Bean
-    public Queue queue(){
-        return new Queue(queue);
+    public Queue cartItemQueue(){
+        return new Queue(cartItemQueue);
     }
 
     @Bean
-    public TopicExchange exchange(){
-        return new TopicExchange(exchange);
+    public TopicExchange cartitemExchange(){
+        return new TopicExchange(cartItemExchange);
     }
 
     @Bean
-    public Binding binding(){
+    public Binding cartItemBinding(){
         return BindingBuilder
-                .bind(queue())
-                .to(exchange())
-                .with(routingKey);
+                .bind(cartItemQueue())
+                .to(cartitemExchange())
+                .with(cartItemRoutingKey);
     }
 }

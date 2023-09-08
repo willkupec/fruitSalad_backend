@@ -66,4 +66,14 @@ public class AddressController {
         return addressService.getAddressById(id);
     }
 
+    @GetMapping("/{customer}")
+    public Address getByCustomer(@PathVariable("customer") String customer) {
+        try {
+            addressProducer.sendMessage("Got address by customer");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return addressService.getAddressByCustomer(customer);
+    }
+
 }

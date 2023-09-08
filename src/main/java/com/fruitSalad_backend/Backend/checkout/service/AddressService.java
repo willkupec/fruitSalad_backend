@@ -32,4 +32,9 @@ public class AddressService implements IAddressService {
     public Address getAddressById(int id) {
         return addressRepository.findById(id);
     }
+
+    @Override
+    public Address getAddressByCustomer(String customer) {
+        return addressRepository.findByCustomer(customer);
+    }
 }

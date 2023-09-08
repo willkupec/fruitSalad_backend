@@ -9,4 +9,5 @@ public interface IAddressService {
     public void removeAddress(int id);
     public List<Address> getAllAddresses();
     public Address getAddressById(int id);
+    public Address getAddressByCustomer(String customer);
 }

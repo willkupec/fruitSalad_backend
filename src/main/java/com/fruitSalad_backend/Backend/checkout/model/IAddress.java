@@ -13,6 +13,8 @@ public interface IAddress {
     public void setCity(String city);
     public String getCountry();
     public void setCountry(String country);
+    public String getCustomer();
+    public void setCustomer(String customer);
     public int getZipCode();
     public void setZipCode(int zipCode);
     public String toString();

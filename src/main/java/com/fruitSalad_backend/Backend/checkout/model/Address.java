@@ -10,7 +10,7 @@ public class Address implements IAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name, address, addressEtc, city, country;
+    private String name, address, addressEtc, city, country, customer;
     private int zipCode;
 
     public Address() {
@@ -79,6 +79,16 @@ public class Address implements IAddress {
     }
 
     @Override
+    public String getCustomer() {
+        return customer;
+    }
+
+    @Override
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    @Override
     public int getZipCode() {
         return zipCode;
     }
@@ -93,6 +103,7 @@ public class Address implements IAddress {
         return "\nid: " + id + "\nname: "
                 + name + "\naddress: " + address +
                 "\naddressEtc: " + addressEtc + "\ncity: " + city
-                + "\ncountry: " + country + "\nzipCode: " + zipCode;
+                + "\ncountry: " + country + "\nzipCode: " + zipCode
+                 + "\ncustomer: " + customer;
     }
 }

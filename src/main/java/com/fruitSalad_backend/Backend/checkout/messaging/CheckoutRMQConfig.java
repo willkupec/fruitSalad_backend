@@ -31,7 +31,7 @@ public class CheckoutRMQConfig {
     }
 
     @Bean
-    public Binding binding(){
+    public Binding addressBinding(){
         return BindingBuilder
                 .bind(addressQueue())
                 .to(addressExchange())

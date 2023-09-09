@@ -1,11 +1,13 @@
 package com.fruitSalad_backend.Backend.checkout.controller;
 
 
+import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
 import com.fruitSalad_backend.Backend.checkout.messaging.AddressProducer;
 import com.fruitSalad_backend.Backend.checkout.model.Address;
 import com.fruitSalad_backend.Backend.checkout.repository.AddressRepository;
 import com.fruitSalad_backend.Backend.checkout.service.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,6 +46,40 @@ public class AddressController {
         }
         addressService.removeAddress(id);
         return "Removed address with id: " + id;
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public List<Address> update(@PathVariable int id, @RequestBody Address addressData) throws Exception {
+        Address existingAddress = addressService.getAddressById(id);
+
+        if (existingAddress == null) {
+            throw new Exception("Address Not Found");
+        }
+
+        String name = addressData.getName();
+        String address = addressData.getAddress();
+        String addressEtc = addressData.getAddressEtc();
+        String city = addressData.getCity();
+        String country = addressData.getCountry();
+        String customer = addressData.getCustomer();
+        int zipCode = addressData.getZipCode();
+
+        existingAddress.setName(name);
+        existingAddress.setAddress(address);
+        existingAddress.setAddressEtc(addressEtc);
+        existingAddress.setCity(city);
+        existingAddress.setCountry(country);
+        existingAddress.setCustomer(customer);
+        existingAddress.setZipCode(zipCode);
+
+        try {
+            addressProducer.sendMessage("Updated address");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        addressService.updateAddress(existingAddress);
+        return addressService.getAllAddresses();
     }
 
     @GetMapping("")

@@ -50,6 +50,17 @@ public class CustomerController {
             return new ResponseEntity<>("Unable to login.", HttpStatus.UNAUTHORIZED);
         }
     }
+    @PutMapping("/update")
+    public ResponseEntity<String> update(@RequestBody Customer customer) {
+        if (customerRepository.findByEmail(customer.getEmail()) != null) {
+            return new ResponseEntity<>("Username is taken!", HttpStatus.BAD_REQUEST);
+        }
+
+        customerService.updateCustomer(customer);
+
+        return new ResponseEntity<>("User updated!", HttpStatus.OK);
+    }
+
 
     @GetMapping("")
     public List<Customer> list() {

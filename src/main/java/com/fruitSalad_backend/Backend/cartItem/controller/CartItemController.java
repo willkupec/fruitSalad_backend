@@ -5,7 +5,9 @@ import com.fruitSalad_backend.Backend.cartItem.messaging.CartItemProducer;
 import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
 import com.fruitSalad_backend.Backend.cartItem.repository.CartItemRepository;
 import com.fruitSalad_backend.Backend.cartItem.service.ICartItemService;
+import com.fruitSalad_backend.Backend.checkout.model.Address;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,6 +45,32 @@ public class CartItemController {
         }
         cartItemService.removeCartItem(id);
         return "Removed CartItem with id: " + id;
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public List<CartItem> update(@PathVariable int id, @RequestBody CartItem cartItem) throws Exception {
+        CartItem existingCartItem = cartItemService.getCartItemById(id);
+
+        if (existingCartItem == null) {
+            throw new Exception("CartItem Not Found");
+        }
+
+        String title = cartItem.getTitle();
+        double price = cartItem.getPrice();
+        String src = cartItem.getSrc();
+        existingCartItem.setTitle(title);
+        existingCartItem.setPrice(price);
+        existingCartItem.setSrc(src);
+
+        try {
+            cartItemProducer.sendMessage("Updated CartItem");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        cartItemService.updateCartItem(existingCartItem);
+        return cartItemService.getAllCartItems();
     }
 
     @GetMapping("")

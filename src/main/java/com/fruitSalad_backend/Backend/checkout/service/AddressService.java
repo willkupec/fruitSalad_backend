@@ -24,6 +24,11 @@ public class AddressService implements IAddressService {
     }
 
     @Override
+    public List<Address> updateAddress(Address address) {
+        return addressRepository.findAll();
+    }
+
+    @Override
     public List<Address> getAllAddresses() {
         return addressRepository.findAll();
     }

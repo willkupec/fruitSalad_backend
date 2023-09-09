@@ -29,6 +29,11 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
+    public Customer updateCustomer(Customer customer) {
+        return customerRepository.save(customer);
+    }
+
+    @Override
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }

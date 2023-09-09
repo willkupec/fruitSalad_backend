@@ -24,6 +24,9 @@ public class CartItemService implements ICartItemService {
     }
 
     @Override
+    public List<CartItem> updateCartItem(CartItem cartItem) { return cartItemRepository.findAll(); }
+
+    @Override
     public List<CartItem> getAllCartItems() {
         return cartItemRepository.findAll();
     }

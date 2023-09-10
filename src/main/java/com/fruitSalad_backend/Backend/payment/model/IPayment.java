@@ -1,5 +1,7 @@
 package com.fruitSalad_backend.Backend.payment.model;
 
+import com.fruitSalad_backend.Backend.checkout.model.Address;
+
 import java.math.BigInteger;
 
 public interface IPayment {
@@ -13,5 +15,7 @@ public interface IPayment {
     public void setExpiryDate(String expiryDate);
     public int getCVV();
     public void setCVV(int cvv);
+    public String getCustomer();
+    public void setCustomer(String customer);
     public String toString();
 }

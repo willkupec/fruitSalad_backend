@@ -1,9 +1,8 @@
 package com.fruitSalad_backend.Backend.payment.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
+import com.fruitSalad_backend.Backend.checkout.model.Address;
+import jakarta.persistence.*;
 
 import java.math.BigInteger;
 
@@ -12,9 +11,10 @@ public class Payment implements IPayment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name, expiryDate, customer;
+    private String name, expiryDate;
     private BigInteger number;
     private int cvv;
+    private String customer;
 
     public Payment() {
 
@@ -71,9 +71,19 @@ public class Payment implements IPayment {
     }
 
     @Override
+    public String getCustomer() {
+        return customer;
+    }
+
+    @Override
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    @Override
     public String toString() {
         return "\nid: " + id + "\nname: "
                 + name + "\nnumber: " + number +
-                "\nexpiryDate: " + expiryDate + "\nCVV: " + cvv;
+                "\nexpiryDate: " + expiryDate + "\nCVV: " + cvv + "\ncustomer: " + customer;
     }
     }

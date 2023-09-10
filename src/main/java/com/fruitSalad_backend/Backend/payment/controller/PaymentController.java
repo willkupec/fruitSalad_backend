@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigInteger;
 import java.util.List;
 
-@RequestMapping("/card")
+@RequestMapping("/payment")
 @RestController
 @CrossOrigin
 public class PaymentController {
@@ -20,7 +20,7 @@ public class PaymentController {
     private PaymentRepository paymentRepository;
 
     @Autowired
-    private IPaymentService cardService;
+    private IPaymentService paymentService;
 
     @Autowired
     PaymentProducer paymentProducer;
@@ -28,70 +28,72 @@ public class PaymentController {
     @PostMapping("")
     public String add(@RequestBody Payment payment) {
         try {
-            paymentProducer.sendMessage("Added card");
+            paymentProducer.sendMessage("Added payment");
         } catch (Exception e) {
             System.out.println(e);
         }
-        cardService.addCard(payment);
+        paymentService.addPayment(payment);
         return "Added " + payment.toString();
     }
 
     @DeleteMapping("/{id}")
     public String remove(@PathVariable("id") int id) {
         try {
-            paymentProducer.sendMessage("Removed card");
+            paymentProducer.sendMessage("Removed payment");
         } catch (Exception e) {
             System.out.println(e);
         }
-        cardService.removeCard(id);
-        return "Removed card with id: " + id;
+        paymentService.removePayment(id);
+        return "Removed payment with id: " + id;
     }
 
     @PutMapping("/{id}")
     @Transactional
     public List<Payment> update(@PathVariable int id, @RequestBody Payment payment) throws Exception {
-        Payment existingPayment = cardService.getCardById(id);
+        Payment existingPayment = paymentService.getPaymentById(id);
 
         if (existingPayment == null) {
-            throw new Exception("Card Not Found");
+            throw new Exception("Payment Not Found");
         }
 
         String name = payment.getName();
         BigInteger number = payment.getNumber();
         String expiryDate = payment.getExpiryDate();
         int cvv = payment.getCVV();
+        String customer = payment.getCustomer();
 
         existingPayment.setName(name);
         existingPayment.setNumber(number);
         existingPayment.setExpiryDate(expiryDate);
         existingPayment.setCVV(cvv);
+        existingPayment.setCustomer(customer);
 
         try {
-            paymentProducer.sendMessage("Updated card");
+            paymentProducer.sendMessage("Updated payment");
         } catch (Exception e) {
             System.out.println(e);
         }
-        cardService.updateCard(existingPayment);
-        return cardService.getAllCards();
+        paymentService.updatePayment(existingPayment);
+        return paymentService.getAllPayments();
     }
 
     @GetMapping("")
     public List<Payment> list(){
         try {
-            paymentProducer.sendMessage("Listed all cards");
+            paymentProducer.sendMessage("Listed all payments");
         } catch (Exception e) {
             System.out.println(e);
         }
-        return cardService.getAllCards();
+        return paymentService.getAllPayments();
     }
 
     @GetMapping("/{id}")
     public Payment getById(@PathVariable("id") int id) {
         try {
-            paymentProducer.sendMessage("Got card by id");
+            paymentProducer.sendMessage("Got payment by id");
         } catch (Exception e) {
             System.out.println(e);
         }
-        return cardService.getCardById(id);
+        return paymentService.getPaymentById(id);
     }
 }

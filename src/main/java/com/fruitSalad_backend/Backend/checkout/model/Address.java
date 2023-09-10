@@ -7,10 +7,12 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Address implements IAddress {
-    @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name, address, addressEtc, city, country, customer;
+    @Id
+    private String customer;
+    private String name, address, addressEtc, city, country;
     private int zipCode;
 
     public Address() {

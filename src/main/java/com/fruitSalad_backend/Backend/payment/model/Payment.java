@@ -1,6 +1,5 @@
 package com.fruitSalad_backend.Backend.payment.model;
 
-import com.fruitSalad_backend.Backend.checkout.model.IAddress;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,15 +8,15 @@ import jakarta.persistence.Id;
 import java.math.BigInteger;
 
 @Entity
-public class Card implements ICard {
+public class Payment implements IPayment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name, expiryDate;
+    private String name, expiryDate, customer;
     private BigInteger number;
     private int cvv;
 
-    public Card() {
+    public Payment() {
 
     }
 

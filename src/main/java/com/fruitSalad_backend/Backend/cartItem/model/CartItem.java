@@ -3,6 +3,7 @@ package com.fruitSalad_backend.Backend.cartItem.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="cart_items")
 public class CartItem implements ICartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,12 +1,12 @@
 package com.fruitSalad_backend.Backend.payment.service;
 
-import com.fruitSalad_backend.Backend.payment.model.Payment;
+import com.fruitSalad_backend.Backend.payment.model.Order;
 import java.util.List;
 
 public interface IPaymentService {
-    public Payment addPayment(Payment payment);
+    public Order addPayment(Order order);
     public void removePayment(int id);
-    public List<Payment> updatePayment(Payment payment);
-    public List<Payment> getAllPayments();
-    public Payment getPaymentById(int id);
+    public List<Order> updatePayment(Order order);
+    public List<Order> getAllPayments();
+    public Order getPaymentById(int id);
 }

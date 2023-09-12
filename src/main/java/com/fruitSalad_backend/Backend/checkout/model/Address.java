@@ -1,16 +1,13 @@
 package com.fruitSalad_backend.Backend.checkout.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name="addresses")
 public class Address implements IAddress {
-
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Id
     private String customer;
     private String name, address, addressEtc, city, country;
     private int zipCode;

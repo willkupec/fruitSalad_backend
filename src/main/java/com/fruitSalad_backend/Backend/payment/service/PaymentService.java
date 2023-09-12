@@ -1,6 +1,6 @@
 package com.fruitSalad_backend.Backend.payment.service;
 
-import com.fruitSalad_backend.Backend.payment.model.Payment;
+import com.fruitSalad_backend.Backend.payment.model.Order;
 import com.fruitSalad_backend.Backend.payment.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +14,8 @@ public class PaymentService implements IPaymentService {
     private PaymentRepository paymentRepository;
 
     @Override
-    public Payment addPayment(Payment payment) {
-        return paymentRepository.save(payment);
+    public Order addPayment(Order order) {
+        return paymentRepository.save(order);
     }
 
     @Override
@@ -24,17 +24,17 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public List<Payment> updatePayment(Payment payment) {
+    public List<Order> updatePayment(Order order) {
         return paymentRepository.findAll();
     }
 
     @Override
-    public List<Payment> getAllPayments() {
+    public List<Order> getAllPayments() {
         return paymentRepository.findAll();
     }
 
     @Override
-    public Payment getPaymentById(int id) {
+    public Order getPaymentById(int id) {
         return paymentRepository.findById(id);
     }
 }

@@ -1,22 +1,26 @@
 package com.fruitSalad_backend.Backend.payment.model;
 
-import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
-import com.fruitSalad_backend.Backend.checkout.model.Address;
 import jakarta.persistence.*;
 
 import java.math.BigInteger;
+import java.util.List;
 
 @Entity
-public class Payment implements IPayment {
+@Table(name="orders")
+public class Order implements IOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private double totalPrice;
     private String name, expiryDate;
     private BigInteger number;
     private int cvv;
+    // @OneToOne(targetEntity = Address.class, mappedBy = "customer")
     private String customer;
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems;
 
-    public Payment() {
+    public Order() {
 
     }
 
@@ -28,6 +32,16 @@ public class Payment implements IPayment {
     @Override
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    @Override
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     @Override
@@ -81,9 +95,20 @@ public class Payment implements IPayment {
     }
 
     @Override
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    @Override
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    @Override
     public String toString() {
         return "\nid: " + id + "\nname: "
                 + name + "\nnumber: " + number +
-                "\nexpiryDate: " + expiryDate + "\nCVV: " + cvv + "\ncustomer: " + customer;
+                "\nexpiryDate: " + expiryDate + "\nCVV: " + cvv + "\ncustomer: " + customer + "\norderItems: " + orderItems.toString();
     }
+
     }

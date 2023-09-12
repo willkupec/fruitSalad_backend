@@ -1,7 +1,9 @@
 package com.fruitSalad_backend.Backend.payment.controller;
 
+import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
 import com.fruitSalad_backend.Backend.payment.messaging.PaymentProducer;
-import com.fruitSalad_backend.Backend.payment.model.Payment;
+import com.fruitSalad_backend.Backend.payment.model.Order;
+import com.fruitSalad_backend.Backend.payment.model.OrderItem;
 import com.fruitSalad_backend.Backend.payment.repository.PaymentRepository;
 import com.fruitSalad_backend.Backend.payment.service.IPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +28,14 @@ public class PaymentController {
     PaymentProducer paymentProducer;
 
     @PostMapping("")
-    public String add(@RequestBody Payment payment) {
+    public String add(@RequestBody Order order) {
         try {
             paymentProducer.sendMessage("Added payment");
         } catch (Exception e) {
             System.out.println(e);
         }
-        paymentService.addPayment(payment);
-        return "Added " + payment.toString();
+        paymentService.addPayment(order);
+        return "Added " + order.toString();
     }
 
     @DeleteMapping("/{id}")
@@ -49,36 +51,40 @@ public class PaymentController {
 
     @PutMapping("/{id}")
     @Transactional
-    public List<Payment> update(@PathVariable int id, @RequestBody Payment payment) throws Exception {
-        Payment existingPayment = paymentService.getPaymentById(id);
+    public List<Order> update(@PathVariable int id, @RequestBody Order order) throws Exception {
+        Order existingOrder = paymentService.getPaymentById(id);
 
-        if (existingPayment == null) {
+        if (existingOrder == null) {
             throw new Exception("Payment Not Found");
         }
 
-        String name = payment.getName();
-        BigInteger number = payment.getNumber();
-        String expiryDate = payment.getExpiryDate();
-        int cvv = payment.getCVV();
-        String customer = payment.getCustomer();
+        double totalPrice = order.getTotalPrice();
+        String name = order.getName();
+        BigInteger number = order.getNumber();
+        String expiryDate = order.getExpiryDate();
+        int cvv = order.getCVV();
+        String customer = order.getCustomer();
+        List<OrderItem> orderItems = order.getOrderItems();
 
-        existingPayment.setName(name);
-        existingPayment.setNumber(number);
-        existingPayment.setExpiryDate(expiryDate);
-        existingPayment.setCVV(cvv);
-        existingPayment.setCustomer(customer);
+        existingOrder.setTotalPrice(totalPrice);
+        existingOrder.setName(name);
+        existingOrder.setNumber(number);
+        existingOrder.setExpiryDate(expiryDate);
+        existingOrder.setCVV(cvv);
+        existingOrder.setCustomer(customer);
+        existingOrder.setOrderItems(orderItems);
 
         try {
             paymentProducer.sendMessage("Updated payment");
         } catch (Exception e) {
             System.out.println(e);
         }
-        paymentService.updatePayment(existingPayment);
+        paymentService.updatePayment(existingOrder);
         return paymentService.getAllPayments();
     }
 
     @GetMapping("")
-    public List<Payment> list(){
+    public List<Order> list(){
         try {
             paymentProducer.sendMessage("Listed all payments");
         } catch (Exception e) {
@@ -88,7 +94,7 @@ public class PaymentController {
     }
 
     @GetMapping("/{id}")
-    public Payment getById(@PathVariable("id") int id) {
+    public Order getById(@PathVariable("id") int id) {
         try {
             paymentProducer.sendMessage("Got payment by id");
         } catch (Exception e) {

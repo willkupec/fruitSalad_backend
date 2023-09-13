@@ -1,5 +1,6 @@
 package com.fruitSalad_backend.Backend.payment.model;
 
+import com.fruitSalad_backend.Backend.checkout.model.Address;
 import jakarta.persistence.*;
 
 import java.math.BigInteger;
@@ -15,9 +16,10 @@ public class Order implements IOrder {
     private String name, expiryDate;
     private BigInteger number;
     private int cvv;
-    // @OneToOne(targetEntity = Address.class, mappedBy = "customer")
+/*    @OneToOne(targetEntity = Address.class, mappedBy = "customer")
+    @JoinColumn(name = "customer", referencedColumnName = "customer")*/
     private String customer;
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
 
     public Order() {

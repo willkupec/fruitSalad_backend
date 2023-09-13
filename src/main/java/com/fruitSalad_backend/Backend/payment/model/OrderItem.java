@@ -1,5 +1,6 @@
 package com.fruitSalad_backend.Backend.payment.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
 import jakarta.persistence.*;
 

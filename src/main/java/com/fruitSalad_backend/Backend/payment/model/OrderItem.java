@@ -11,7 +11,6 @@ public class OrderItem implements IOrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private double price;
     private int quantity;
 
     @OneToOne
@@ -30,16 +29,6 @@ public class OrderItem implements IOrderItem {
     @Override
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Override
-    public double getPrice() {
-        return price;
-    }
-
-    @Override
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     @Override
@@ -64,8 +53,6 @@ public class OrderItem implements IOrderItem {
 
     @Override
     public String toString() {
-        return "\nid: " + id + "\nprice: "
-                + price + "\nquantity: " + quantity +
-                "\ncartItem: " + cartItem.toString();
+        return "\nid: " + id + "\nquantity: " + quantity + "\ncartItem: " + cartItem.toString();
     }
 }

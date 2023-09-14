@@ -15,8 +15,6 @@ public class Customer implements ICustomer {
     private String lastName;
     private String email;
     private String password;
-    @ElementCollection(targetClass = CartItem.class)
-    private List<CartItem> cart = new ArrayList<CartItem>();
 
     public Customer() {
     }
@@ -69,16 +67,6 @@ public class Customer implements ICustomer {
     @Override
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public List<CartItem> getCart() {
-        return cart;
-    }
-
-    @Override
-    public void setCart(List<CartItem> cart) {
-        this.cart = cart;
     }
 
     @Override

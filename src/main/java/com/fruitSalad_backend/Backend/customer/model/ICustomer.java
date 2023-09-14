@@ -15,7 +15,5 @@ public interface ICustomer {
     public void setEmail(String email);
     public String getPassword();
     public void setPassword(String password);
-    public List<CartItem> getCart();
-    public void setCart(List<CartItem> cart);
     public String toString();
 }

@@ -1,4 +1,4 @@
-package com.fruitSalad_backend.Backend.cartItem.messaging;
+package com.fruitSalad_backend.Backend.cart.messaging;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class CartItemRMQConfig {
+public class CartRMQConfig {
 
     @Value("cartItem")
     private String cartItemQueue;

@@ -1,10 +1,6 @@
 package com.fruitSalad_backend.Backend.customer.model;
 
-import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
 import jakarta.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Customer implements ICustomer {

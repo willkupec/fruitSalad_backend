@@ -1,7 +1,5 @@
 package com.fruitSalad_backend.Backend.payment.model;
 
-import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
-
 import java.math.BigInteger;
 import java.util.List;
 

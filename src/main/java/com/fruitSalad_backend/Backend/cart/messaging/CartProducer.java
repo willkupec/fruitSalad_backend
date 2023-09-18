@@ -1,4 +1,4 @@
-package com.fruitSalad_backend.Backend.checkout.messaging;
+package com.fruitSalad_backend.Backend.cart.messaging;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,19 +7,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddressProducer {
+public class CartProducer {
 
-    @Value("address_exchange")
+    @Value("cartItem_exchange")
     private String exchange;
 
-    @Value("address_routing_key")
+    @Value("cartItem_routing_key")
     private String routingKey;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AddressProducer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CartProducer.class);
 
     private final RabbitTemplate rabbitTemplate;
 
-    public AddressProducer(RabbitTemplate rabbitTemplate) {
+    public CartProducer(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
 

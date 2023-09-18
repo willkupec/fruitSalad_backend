@@ -1,6 +1,5 @@
 package com.fruitSalad_backend.Backend.payment.controller;
 
-import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
 import com.fruitSalad_backend.Backend.payment.messaging.PaymentProducer;
 import com.fruitSalad_backend.Backend.payment.model.Order;
 import com.fruitSalad_backend.Backend.payment.model.OrderItem;

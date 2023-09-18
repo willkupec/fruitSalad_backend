@@ -1,4 +1,4 @@
-package com.fruitSalad_backend.Backend.cartItem.model;
+package com.fruitSalad_backend.Backend.cart.model;
 
 public interface ICartItem {
     public int getId();

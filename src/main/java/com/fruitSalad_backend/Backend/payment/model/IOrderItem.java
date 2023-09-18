@@ -1,6 +1,6 @@
 package com.fruitSalad_backend.Backend.payment.model;
 
-import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
+import com.fruitSalad_backend.Backend.cart.model.CartItem;
 
 public interface IOrderItem {
     public int getId();

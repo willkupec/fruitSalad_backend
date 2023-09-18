@@ -1,11 +1,10 @@
-package com.fruitSalad_backend.Backend.cartItem.controller;
+package com.fruitSalad_backend.Backend.cart.controller;
 
 
-import com.fruitSalad_backend.Backend.cartItem.messaging.CartItemProducer;
-import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
-import com.fruitSalad_backend.Backend.cartItem.repository.CartItemRepository;
-import com.fruitSalad_backend.Backend.cartItem.service.ICartItemService;
-import com.fruitSalad_backend.Backend.checkout.model.Address;
+import com.fruitSalad_backend.Backend.cart.messaging.CartProducer;
+import com.fruitSalad_backend.Backend.cart.model.CartItem;
+import com.fruitSalad_backend.Backend.cart.repository.CartRepository;
+import com.fruitSalad_backend.Backend.cart.service.ICartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -14,21 +13,21 @@ import java.util.List;
 @RequestMapping("/cartItem")
 @RestController
 @CrossOrigin
-public class CartItemController {
+public class CartController {
 
     @Autowired
-    private CartItemRepository cartItemRepository;
+    private CartRepository cartRepository;
 
     @Autowired
-    private ICartItemService cartItemService;
+    private ICartService cartItemService;
 
     @Autowired
-    CartItemProducer cartItemProducer;
+    CartProducer cartProducer;
 
     @PostMapping("")
     public String add(@RequestBody CartItem cartItem) {
         try {
-            cartItemProducer.sendMessage("Added CartItem");
+            cartProducer.sendMessage("Added CartItem");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -39,7 +38,7 @@ public class CartItemController {
     @DeleteMapping("/{id}")
     public String remove(@PathVariable("id") int id) {
         try {
-            cartItemProducer.sendMessage("Removed CartItem");
+            cartProducer.sendMessage("Removed CartItem");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -64,7 +63,7 @@ public class CartItemController {
         existingCartItem.setSrc(src);
 
         try {
-            cartItemProducer.sendMessage("Updated CartItem");
+            cartProducer.sendMessage("Updated CartItem");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -76,7 +75,7 @@ public class CartItemController {
     @GetMapping("")
     public List<CartItem> list(){
         try {
-            cartItemProducer.sendMessage("Listed all CartItems");
+            cartProducer.sendMessage("Listed all CartItems");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -86,7 +85,7 @@ public class CartItemController {
     @GetMapping("/{id}")
     public CartItem getById(@PathVariable("id") int id) {
         try {
-            cartItemProducer.sendMessage("Got CartItem by id");
+            cartProducer.sendMessage("Got CartItem by id");
         } catch (Exception e) {
             System.out.println(e);
         }

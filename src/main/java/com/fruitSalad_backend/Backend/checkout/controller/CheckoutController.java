@@ -1,11 +1,10 @@
 package com.fruitSalad_backend.Backend.checkout.controller;
 
 
-import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
-import com.fruitSalad_backend.Backend.checkout.messaging.AddressProducer;
+import com.fruitSalad_backend.Backend.checkout.messaging.CheckoutProducer;
 import com.fruitSalad_backend.Backend.checkout.model.Address;
-import com.fruitSalad_backend.Backend.checkout.repository.AddressRepository;
-import com.fruitSalad_backend.Backend.checkout.service.IAddressService;
+import com.fruitSalad_backend.Backend.checkout.repository.CheckoutRepository;
+import com.fruitSalad_backend.Backend.checkout.service.ICheckoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -15,21 +14,21 @@ import java.util.List;
 @RequestMapping("/checkout")
 @RestController
 @CrossOrigin
-public class AddressController {
+public class CheckoutController {
 
     @Autowired
-    private AddressRepository addressRepository;
+    private CheckoutRepository checkoutRepository;
 
     @Autowired
-    private IAddressService addressService;
+    private ICheckoutService addressService;
 
     @Autowired
-    AddressProducer addressProducer;
+    CheckoutProducer checkoutProducer;
 
     @PostMapping("")
     public String add(@RequestBody Address address) {
         try {
-            addressProducer.sendMessage("Added address");
+            checkoutProducer.sendMessage("Added address");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -40,7 +39,7 @@ public class AddressController {
     @DeleteMapping("/{id}")
     public String remove(@PathVariable("id") int id) {
         try {
-            addressProducer.sendMessage("Removed address");
+            checkoutProducer.sendMessage("Removed address");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -74,7 +73,7 @@ public class AddressController {
         existingAddress.setZipCode(zipCode);
 
         try {
-            addressProducer.sendMessage("Updated address");
+            checkoutProducer.sendMessage("Updated address");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -85,7 +84,7 @@ public class AddressController {
     @GetMapping("")
     public List<Address> list(){
         try {
-            addressProducer.sendMessage("Listed all addresses");
+            checkoutProducer.sendMessage("Listed all addresses");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -95,7 +94,7 @@ public class AddressController {
     @GetMapping("/{id}")
     public Address getById(@PathVariable("id") int id) {
         try {
-            addressProducer.sendMessage("Got address by id");
+            checkoutProducer.sendMessage("Got address by id");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -105,7 +104,7 @@ public class AddressController {
     @GetMapping("/customer/{customer}")
     public Address getByCustomer(@PathVariable("customer") String customer) {
         try {
-            addressProducer.sendMessage("Got address by customer");
+            checkoutProducer.sendMessage("Got address by customer");
         } catch (Exception e) {
             System.out.println(e);
         }

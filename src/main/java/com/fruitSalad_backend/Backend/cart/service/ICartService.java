@@ -1,10 +1,10 @@
-package com.fruitSalad_backend.Backend.cartItem.service;
+package com.fruitSalad_backend.Backend.cart.service;
 
-import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
+import com.fruitSalad_backend.Backend.cart.model.CartItem;
 
 import java.util.List;
 
-public interface ICartItemService {
+public interface ICartService {
     public CartItem addCartItem(CartItem cartItem);
     public void removeCartItem(int id);
     public List<CartItem> updateCartItem(CartItem cartItem);

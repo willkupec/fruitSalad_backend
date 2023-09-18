@@ -1,9 +1,5 @@
 package com.fruitSalad_backend.Backend.customer.model;
 
-import com.fruitSalad_backend.Backend.cartItem.model.CartItem;
-
-import java.util.List;
-
 public interface ICustomer {
     public int getId();
     public void setId(int id);

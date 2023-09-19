@@ -11,7 +11,7 @@
 	<groupId>com.fruitSalad_backend</groupId>
 	<artifactId>Payment</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>payment</name>
+	<name>Payment</name>
 	<description>fruitSalad Website Backend  - Payment Service</description>
 	<properties>
 		<java.version>20</java.version>

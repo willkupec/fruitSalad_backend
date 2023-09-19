@@ -19,7 +19,7 @@ public class CheckoutController {
     private CheckoutRepository checkoutRepository;
 
     @Autowired
-    private ICheckoutService addressService;
+    private ICheckoutService checkoutService;
 
     @Autowired
     CheckoutProducer checkoutProducer;
@@ -31,7 +31,7 @@ public class CheckoutController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        addressService.addAddress(address);
+        checkoutService.addAddress(address);
         return "Added " + address.toString();
     }
 
@@ -42,14 +42,14 @@ public class CheckoutController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        addressService.removeAddress(id);
+        checkoutService.removeAddress(id);
         return "Removed address with id: " + id;
     }
 
     @PutMapping("/{id}")
     @Transactional
     public List<Address> update(@PathVariable int id, @RequestBody Address addressData) throws Exception {
-        Address existingAddress = addressService.getAddressById(id);
+        Address existingAddress = checkoutService.getAddressById(id);
 
         if (existingAddress == null) {
             throw new Exception("Address Not Found");
@@ -76,8 +76,8 @@ public class CheckoutController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        addressService.updateAddress(existingAddress);
-        return addressService.getAllAddresses();
+        checkoutService.updateAddress(existingAddress);
+        return checkoutService.getAllAddresses();
     }
 
     @GetMapping("")
@@ -87,7 +87,7 @@ public class CheckoutController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        return addressService.getAllAddresses();
+        return checkoutService.getAllAddresses();
     }
 
     @GetMapping("/{id}")
@@ -97,7 +97,7 @@ public class CheckoutController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        return addressService.getAddressById(id);
+        return checkoutService.getAddressById(id);
     }
 
     @GetMapping("/customer/{customer}")
@@ -107,6 +107,6 @@ public class CheckoutController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        return addressService.getAddressByCustomer(customer);
+        return checkoutService.getAddressByCustomer(customer);
     }
 }

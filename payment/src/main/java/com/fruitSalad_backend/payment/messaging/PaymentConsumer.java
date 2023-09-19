@@ -13,7 +13,7 @@ public class PaymentConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(PaymentConsumer.class);
 
     @Autowired
-    private IPaymentService cardService;
+    private IPaymentService paymentService;
 
     @RabbitListener(queues = {"card"})
     public void consume(String message){

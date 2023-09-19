@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@RequestMapping("/cartItem")
+@RequestMapping("/cart")
 @RestController
 @CrossOrigin
 public class CartController {
@@ -19,7 +19,7 @@ public class CartController {
     private CartRepository cartRepository;
 
     @Autowired
-    private ICartService cartItemService;
+    private ICartService cartService;
 
     @Autowired
     CartProducer cartProducer;
@@ -31,7 +31,7 @@ public class CartController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        cartItemService.addCartItem(cartItem);
+        cartService.addCartItem(cartItem);
         return "Added " + cartItem.toString();
     }
 
@@ -42,14 +42,14 @@ public class CartController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        cartItemService.removeCartItem(id);
+        cartService.removeCartItem(id);
         return "Removed CartItem with id: " + id;
     }
 
     @PutMapping("/{id}")
     @Transactional
     public List<CartItem> update(@PathVariable int id, @RequestBody CartItem cartItem) throws Exception {
-        CartItem existingCartItem = cartItemService.getCartItemById(id);
+        CartItem existingCartItem = cartService.getCartItemById(id);
 
         if (existingCartItem == null) {
             throw new Exception("CartItem Not Found");
@@ -68,8 +68,8 @@ public class CartController {
             System.out.println(e);
         }
 
-        cartItemService.updateCartItem(existingCartItem);
-        return cartItemService.getAllCartItems();
+        cartService.updateCartItem(existingCartItem);
+        return cartService.getAllCartItems();
     }
 
     @GetMapping("")
@@ -79,7 +79,7 @@ public class CartController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        return cartItemService.getAllCartItems();
+        return cartService.getAllCartItems();
     }
 
     @GetMapping("/{id}")
@@ -89,7 +89,7 @@ public class CartController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        return cartItemService.getCartItemById(id);
+        return cartService.getCartItemById(id);
     }
 
 }

@@ -11,30 +11,30 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CartRMQConfig {
 
-    @Value("cartItem")
-    private String cartItemQueue;
+    @Value("cart")
+    private String cartQueue;
 
-    @Value("cartItem_exchange")
-    private String cartItemExchange;
+    @Value("cart_exchange")
+    private String cartExchange;
 
-    @Value("cartItem_routing_key")
-    private String cartItemRoutingKey;
+    @Value("cart_routing_key")
+    private String cartRoutingKey;
 
     @Bean
-    public Queue cartItemQueue(){
-        return new Queue(cartItemQueue);
+    public Queue cartQueue(){
+        return new Queue(cartQueue);
     }
 
     @Bean
-    public TopicExchange cartitemExchange(){
-        return new TopicExchange(cartItemExchange);
+    public TopicExchange cartExchange(){
+        return new TopicExchange(cartExchange);
     }
 
     @Bean
-    public Binding cartItemBinding(){
+    public Binding cartBinding(){
         return BindingBuilder
-                .bind(cartItemQueue())
-                .to(cartitemExchange())
-                .with(cartItemRoutingKey);
+                .bind(cartQueue())
+                .to(cartExchange())
+                .with(cartRoutingKey);
     }
 }

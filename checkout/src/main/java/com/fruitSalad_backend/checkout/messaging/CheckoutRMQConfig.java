@@ -11,30 +11,30 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CheckoutRMQConfig {
 
-    @Value("address")
-    private String addressQueue;
+    @Value("checkout")
+    private String checkoutQueue;
 
-    @Value("address_exchange")
-    private String addressExchange;
+    @Value("checkout_exchange")
+    private String checkoutExchange;
 
-    @Value("address_routing_key")
-    private String addressRoutingKey;
+    @Value("checkout_routing_key")
+    private String checkoutRoutingKey;
 
     @Bean
-    public Queue addressQueue(){
-        return new Queue(addressQueue);
+    public Queue checkoutQueue(){
+        return new Queue(checkoutQueue);
     }
 
     @Bean
-    public TopicExchange addressExchange(){
-        return new TopicExchange(addressExchange);
+    public TopicExchange checkoutExchange(){
+        return new TopicExchange(checkoutExchange);
     }
 
     @Bean
-    public Binding addressBinding(){
+    public Binding checkoutBinding(){
         return BindingBuilder
-                .bind(addressQueue())
-                .to(addressExchange())
-                .with(addressRoutingKey);
+                .bind(checkoutQueue())
+                .to(checkoutExchange())
+                .with(checkoutRoutingKey);
     }
 }

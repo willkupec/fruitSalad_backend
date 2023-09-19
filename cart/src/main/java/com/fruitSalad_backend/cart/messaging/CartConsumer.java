@@ -13,9 +13,9 @@ public class CartConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(CartConsumer.class);
 
     @Autowired
-    private ICartService cartItemService;
+    private ICartService cartService;
 
-    @RabbitListener(queues = {"cartItem"})
+    @RabbitListener(queues = {"cart"})
     public void consume(String message){
         LOGGER.info(String.format("Received message -> %s", message));
     }

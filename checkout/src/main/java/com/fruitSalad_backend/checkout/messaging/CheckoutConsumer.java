@@ -13,7 +13,7 @@ public class CheckoutConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(CheckoutConsumer.class);
 
     @Autowired
-    private ICheckoutService addressService;
+    private ICheckoutService checkoutService;
 
     @RabbitListener(queues = {"address"})
     public void consume(String message){

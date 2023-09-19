@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentProducer {
 
-    @Value("card_exchange")
+    @Value("payment_exchange")
     private String exchange;
 
-    @Value("card_routing_key")
+    @Value("payment_routing_key")
     private String routingKey;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PaymentProducer.class);

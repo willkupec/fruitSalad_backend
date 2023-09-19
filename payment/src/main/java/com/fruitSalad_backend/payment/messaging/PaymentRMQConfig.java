@@ -11,30 +11,30 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PaymentRMQConfig {
 
-    @Value("card")
-    private String cardQueue;
+    @Value("payment")
+    private String paymentQueue;
 
-    @Value("card_exchange")
-    private String cardExchange;
+    @Value("payment_exchange")
+    private String paymentExchange;
 
-    @Value("card_routing_key")
-    private String cardRoutingKey;
+    @Value("payment_routing_key")
+    private String paymentRoutingKey;
 
     @Bean
-    public Queue cardQueue(){
-        return new Queue(cardQueue);
+    public Queue paymentQueue(){
+        return new Queue(paymentQueue);
     }
 
     @Bean
-    public TopicExchange cardExchange(){
-        return new TopicExchange(cardExchange);
+    public TopicExchange paymentExchange(){
+        return new TopicExchange(paymentExchange);
     }
 
     @Bean
-    public Binding cardBinding(){
+    public Binding paymentBinding(){
         return BindingBuilder
-                .bind(cardQueue())
-                .to(cardExchange())
-                .with(cardRoutingKey);
+                .bind(paymentQueue())
+                .to(paymentExchange())
+                .with(paymentRoutingKey);
     }
 }

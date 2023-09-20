@@ -9,18 +9,18 @@
         <outputRelativeToContentRoot value="true" />
         <module name="checkout" />
         <module name="payment" />
-        <module name="Cart" />
+        <module name="cart" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Cart" target="20" />
+      <module name="cart" target="20" />
       <module name="checkout" target="20" />
       <module name="payment" target="20" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Cart" options="-parameters" />
+      <module name="cart" options="-parameters" />
       <module name="checkout" options="-parameters" />
       <module name="payment" options="-parameters" />
     </option>

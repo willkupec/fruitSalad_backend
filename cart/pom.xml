@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>com.fruitSalad_backend</groupId>
 	<artifactId>Cart</artifactId>
+	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Cart</name>
 	<description>fruitSalad Website Backend - Cart Service</description>

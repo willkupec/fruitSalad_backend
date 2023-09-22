@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.fruitSalad_backend</groupId>
 	<artifactId>Checkout</artifactId>
-	<packaging>pom</packaging>
+<!--	<packaging>pom</packaging>-->
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Checkout</name>
 	<description>fruitSalad Website Backend - Checkout Service</description>

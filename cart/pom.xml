@@ -8,7 +8,7 @@
 		<version>3.0.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-
+	<groupId>com.fruitSalad_backend</groupId>
 	<artifactId>Cart</artifactId>
 <!--	<packaging>pom</packaging>-->
 	<version>0.0.1-SNAPSHOT</version>

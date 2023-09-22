@@ -15,7 +15,7 @@ public class PaymentConsumer {
     @Autowired
     private IPaymentService paymentService;
 
-    @RabbitListener(queues = {"card"})
+    @RabbitListener(queues = {"payment"})
     public void consume(String message){
         LOGGER.info(String.format("Received message -> %s", message));
     }

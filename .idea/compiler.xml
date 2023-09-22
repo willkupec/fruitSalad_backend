@@ -13,9 +13,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Cart" target="20" />
-      <module name="Checkout" target="20" />
-      <module name="Payment" target="20" />
+      <module name="Cart" target="1.6" />
+      <module name="Checkout" target="1.6" />
+      <module name="fruitSalad_backend" target="1.5" />
+      <module name="Payment" target="1.6" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

@@ -11,6 +11,7 @@
 	<groupId>com.fruitSalad_backend</groupId>
 	<artifactId>Cart</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>Cart</name>
 	<description>fruitSalad Website Backend - Cart Service</description>
 	<properties>

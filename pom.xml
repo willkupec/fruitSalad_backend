@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.fruitSalad_backend</groupId>
-    <artifactId>fruitSalad_backend</artifactId>
+    <artifactId>parent</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
 

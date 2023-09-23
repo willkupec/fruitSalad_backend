@@ -9,7 +9,11 @@ public class OrderItem implements IOrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String title;
+    private double price;
     private int quantity;
+/*    @OneToOne
+    @JoinColumn(e)*/
     private int cartItemId;
 
     public OrderItem(){
@@ -24,6 +28,26 @@ public class OrderItem implements IOrderItem {
     @Override
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
@@ -48,6 +72,8 @@ public class OrderItem implements IOrderItem {
 
     @Override
     public String toString() {
-        return "\nid: " + id + "\nquantity: " + quantity;
+        return "\nid: " + id + "\ntitle: " +
+                title +"\nprice: " + price + "\nquantity: "
+                + quantity + "\ncartItemId: " + cartItemId;
     }
 }

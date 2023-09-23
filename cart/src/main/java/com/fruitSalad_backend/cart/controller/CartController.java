@@ -1,6 +1,6 @@
 package com.fruitSalad_backend.cart.controller;
 
-import com.fruitSalad_backend.cart.dto.CartItemMessage;
+import com.fruitSalad_backend.cart.dto.CartItemDom;
 import com.fruitSalad_backend.cart.messaging.AddToCartProducer;
 import com.fruitSalad_backend.cart.messaging.CartProducer;
 import com.fruitSalad_backend.cart.model.CartItem;
@@ -97,10 +97,10 @@ public class CartController {
     }
 
     @PostMapping("/addToCart")
-    public void addToCart(@RequestBody CartItemMessage cartItemMessage) {
-        System.out.println(cartItemMessage);
+    public void addToCart(@RequestBody CartItemDom cartItemDom) {
+        System.out.println(cartItemDom);
         try {
-            addToCartProducer.sendMessage(cartItemMessage);
+            addToCartProducer.sendMessage(cartItemDom);
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -14,6 +14,9 @@ public class PaymentRMQConfig {
     @Value("payment")
     private String paymentQueue;
 
+    @Value("addToCart")
+    private String addToCartQueue;
+
     @Value("payment_exchange")
     private String paymentExchange;
 
@@ -26,6 +29,11 @@ public class PaymentRMQConfig {
     }
 
     @Bean
+    public Queue addToCartQueue(){
+        return new Queue(addToCartQueue);
+    }
+
+    @Bean
     public TopicExchange paymentExchange(){
         return new TopicExchange(paymentExchange);
     }
@@ -34,6 +42,14 @@ public class PaymentRMQConfig {
     public Binding paymentBinding(){
         return BindingBuilder
                 .bind(paymentQueue())
+                .to(paymentExchange())
+                .with(paymentRoutingKey);
+    }
+
+    @Bean
+    public Binding addToCartBinding(){
+        return BindingBuilder
+                .bind(addToCartQueue())
                 .to(paymentExchange())
                 .with(paymentRoutingKey);
     }

@@ -1,6 +1,5 @@
 package com.fruitSalad_backend.payment.model;
 
-import com.fruitSalad_backend.cart.model.CartItem;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,10 +10,7 @@ public class OrderItem implements IOrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int quantity;
-
-    @OneToOne
-    @JoinColumn(name = "cart_item_id", referencedColumnName = "id")
-    private CartItem cartItem;
+    private int cartItemId;
 
     public OrderItem(){
 
@@ -41,17 +37,17 @@ public class OrderItem implements IOrderItem {
     }
 
     @Override
-    public CartItem getCartItem() {
-        return cartItem;
+    public int getCartItemId() {
+        return cartItemId;
     }
 
     @Override
-    public void setCartItem(CartItem cartItem) {
-        this.cartItem = cartItem;
+    public void setCartItemId(int cartItemId) {
+        this.cartItemId = cartItemId;
     }
 
     @Override
     public String toString() {
-        return "\nid: " + id + "\nquantity: " + quantity + "\ncartItem: " + cartItem.toString();
+        return "\nid: " + id + "\nquantity: " + quantity;
     }
 }

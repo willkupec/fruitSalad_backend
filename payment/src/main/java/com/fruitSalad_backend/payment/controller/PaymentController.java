@@ -3,7 +3,6 @@ package com.fruitSalad_backend.payment.controller;
 import com.fruitSalad_backend.payment.messaging.PaymentProducer;
 import com.fruitSalad_backend.payment.model.Order;
 import com.fruitSalad_backend.payment.model.OrderItem;
-import com.fruitSalad_backend.payment.model.SharedOrderItems;
 import com.fruitSalad_backend.payment.repository.PaymentRepository;
 import com.fruitSalad_backend.payment.service.IPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;

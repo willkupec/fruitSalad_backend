@@ -1,7 +1,7 @@
 package com.fruitSalad_backend.cart.controller;
 
 import com.fruitSalad_backend.cart.dto.CartItemDom;
-import com.fruitSalad_backend.cart.messaging.AddToCartProducer;
+import com.fruitSalad_backend.cart.messaging.SetCartProducer;
 import com.fruitSalad_backend.cart.messaging.CartProducer;
 import com.fruitSalad_backend.cart.model.CartItem;
 import com.fruitSalad_backend.cart.repository.CartRepository;
@@ -26,7 +26,7 @@ public class CartController {
     CartProducer cartProducer;
 
     @Autowired
-    AddToCartProducer addToCartProducer;
+    SetCartProducer setCartProducer;
 
     @PostMapping("")
     public String add(@RequestBody CartItem cartItem) {
@@ -96,11 +96,11 @@ public class CartController {
         return cartService.getCartItemById(id);
     }
 
-    @PostMapping("/addToCart")
-    public void addToCart(@RequestBody CartItemDom cartItemDom) {
-        System.out.println(cartItemDom);
+    @PostMapping("/setCart")
+    public void setCart(@RequestBody List<CartItemDom> cartItems) {
+        System.out.println(cartItems);
         try {
-            addToCartProducer.sendMessage(cartItemDom);
+            setCartProducer.sendMessage(cartItems);
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -3,6 +3,7 @@ package com.fruitSalad_backend.payment.controller;
 import com.fruitSalad_backend.payment.messaging.PaymentProducer;
 import com.fruitSalad_backend.payment.model.Order;
 import com.fruitSalad_backend.payment.model.OrderItem;
+import com.fruitSalad_backend.payment.model.SharedOrderItems;
 import com.fruitSalad_backend.payment.repository.PaymentRepository;
 import com.fruitSalad_backend.payment.service.IPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class PaymentController {
     private IPaymentService paymentService;
 
     @Autowired
-    PaymentProducer paymentProducer;
+    private PaymentProducer paymentProducer;
 
     @PostMapping("")
     public String add(@RequestBody Order order) {
@@ -33,6 +34,7 @@ public class PaymentController {
         } catch (Exception e) {
             System.out.println(e);
         }
+        order.setOrderItems(paymentService.getOrderItems());
         paymentService.addPayment(order);
         return "Added " + order.toString();
     }

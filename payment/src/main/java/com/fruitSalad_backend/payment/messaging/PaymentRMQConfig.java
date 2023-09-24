@@ -17,21 +17,40 @@ public class PaymentRMQConfig {
     @Value("payment")
     private String paymentQueue;
 
+    @Value("setCart")
+    private String setCartQueue;
+
     @Value("payment_exchange")
     private String paymentExchange;
 
+    @Value("setCart_exchange")
+    private String setCartExchange;
+
     @Value("payment_routing_key")
     private String paymentRoutingKey;
+
+    @Value("setCart_routing_key")
+    private String setCartRoutingKey;
 
     @Bean
     public Queue paymentQueue(){
         return new Queue(paymentQueue);
     }
 
+    @Bean
+    public Queue setCartQueue(){
+        return new Queue(setCartQueue);
+    }
+
 
     @Bean
     public TopicExchange paymentExchange(){
         return new TopicExchange(paymentExchange);
+    }
+
+    @Bean
+    public TopicExchange setCartExchange(){
+        return new TopicExchange(setCartExchange);
     }
 
 
@@ -43,15 +62,11 @@ public class PaymentRMQConfig {
                 .with(paymentRoutingKey);
     }
 
-/*    @Bean
-    public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
-        final var rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(converter());
-        return rabbitTemplate;
-    }
-
     @Bean
-    public Jackson2JsonMessageConverter converter() {
-        return new Jackson2JsonMessageConverter();
-    }*/
+    public Binding setCartBinding(){
+        return BindingBuilder
+                .bind(setCartQueue())
+                .to(setCartExchange())
+                .with(setCartRoutingKey);
+    }
 }

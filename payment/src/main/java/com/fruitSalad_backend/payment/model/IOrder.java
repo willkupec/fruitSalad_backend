@@ -20,6 +20,5 @@ public interface IOrder {
     public void setCustomer(String customer);
     public List<OrderItem> getOrderItems();
     public void setOrderItems(List<OrderItem> orderItems);
-    public void addOrderItem(OrderItem orderItem);
     public String toString();
 }

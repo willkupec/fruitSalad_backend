@@ -104,11 +104,6 @@ public class Order implements IOrder {
     }
 
     @Override
-    public void addOrderItem(OrderItem orderItem) {
-        this.orderItems.add(orderItem);
-    }
-
-    @Override
     public String toString() {
         return "\nid: " + id + "\nname: "
                 + name + "\nnumber: " + number +

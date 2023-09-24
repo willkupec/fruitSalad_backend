@@ -20,7 +20,7 @@ public class SetOrderItemsConsumer {
     @Autowired
     private IPaymentService paymentService;
 
-    @RabbitListener(queues = {"setCart"})
+    @RabbitListener(queues = {"orderItems"})
     public void consume(String message) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         LOGGER.info(String.format("Received message -> %s", message));

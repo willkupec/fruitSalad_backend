@@ -7,6 +7,7 @@ import com.fruitSalad_backend.cart.model.CartItem;
 import com.fruitSalad_backend.cart.repository.CartRepository;
 import com.fruitSalad_backend.cart.service.ICartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -97,7 +98,7 @@ public class CartController {
     }
 
     @PostMapping("/setOrderItems")
-    public void setCart(@RequestBody List<CartItemDto> cartItems) {
+    public void setOrderItems(@RequestBody List<CartItemDto> cartItems) {
         try {
             setOrderItemsProducer.sendMessage(cartItems);
         } catch (Exception e) {

@@ -14,10 +14,10 @@ import java.util.List;
 @Service
 public class SetOrderItemsProducer {
 
-    @Value("setCart_exchange")
+    @Value("orderItems_exchange")
     private String exchange;
 
-    @Value("setCart_routing_key")
+    @Value("orderItems_routing_key")
     private String routingKey;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SetOrderItemsProducer.class);
@@ -31,6 +31,8 @@ public class SetOrderItemsProducer {
     public void sendMessage(List<CartItemDto> cartItems) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         String message = objectMapper.writeValueAsString(cartItems);
+
+        System.out.println("hey");
 
         LOGGER.info(String.format("Message sent -> %s", message));
         rabbitTemplate.convertAndSend(exchange, routingKey, message);

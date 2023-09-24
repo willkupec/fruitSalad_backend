@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cart/Cart.iml" filepath="$PROJECT_DIR$/cart/Cart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/checkout/Checkout.iml" filepath="$PROJECT_DIR$/checkout/Checkout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/payment/Payment.iml" filepath="$PROJECT_DIR$/payment/Payment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fruitSalad_backend.iml" filepath="$PROJECT_DIR$/fruitSalad_backend.iml" />
+    </modules>
+  </component>
+</project>

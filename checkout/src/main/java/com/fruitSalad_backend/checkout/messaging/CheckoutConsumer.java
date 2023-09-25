@@ -15,7 +15,7 @@ public class CheckoutConsumer {
     @Autowired
     private ICheckoutService checkoutService;
 
-    @RabbitListener(queues = {"address"})
+    @RabbitListener(queues = {"checkout"})
     public void consume(String message){
         LOGGER.info(String.format("Received message -> %s", message));
     }

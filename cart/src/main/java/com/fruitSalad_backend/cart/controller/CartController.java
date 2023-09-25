@@ -1,12 +1,13 @@
 package com.fruitSalad_backend.cart.controller;
 
-import com.fruitSalad_backend.cart.dto.CartItemDom;
-import com.fruitSalad_backend.cart.messaging.SetCartProducer;
+import com.fruitSalad_backend.cart.dto.CartItemDto;
+import com.fruitSalad_backend.cart.messaging.SetOrderItemsProducer;
 import com.fruitSalad_backend.cart.messaging.CartProducer;
 import com.fruitSalad_backend.cart.model.CartItem;
 import com.fruitSalad_backend.cart.repository.CartRepository;
 import com.fruitSalad_backend.cart.service.ICartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class CartController {
     CartProducer cartProducer;
 
     @Autowired
-    SetCartProducer setCartProducer;
+    SetOrderItemsProducer setOrderItemsProducer;
 
     @PostMapping("")
     public String add(@RequestBody CartItem cartItem) {
@@ -96,11 +97,10 @@ public class CartController {
         return cartService.getCartItemById(id);
     }
 
-    @PostMapping("/setCart")
-    public void setCart(@RequestBody List<CartItemDom> cartItems) {
-        System.out.println(cartItems);
+    @PostMapping("/setOrderItems")
+    public void setOrderItems(@RequestBody List<CartItemDto> cartItems) {
         try {
-            setCartProducer.sendMessage(cartItems);
+            setOrderItemsProducer.sendMessage(cartItems);
         } catch (Exception e) {
             System.out.println(e);
         }

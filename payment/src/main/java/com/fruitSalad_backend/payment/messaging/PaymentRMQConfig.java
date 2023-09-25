@@ -17,20 +17,20 @@ public class PaymentRMQConfig {
     @Value("payment")
     private String paymentQueue;
 
-    @Value("setCart")
-    private String setCartQueue;
+    @Value("orderItems")
+    private String orderItemsQueue;
 
     @Value("payment_exchange")
     private String paymentExchange;
 
-    @Value("setCart_exchange")
-    private String setCartExchange;
+    @Value("orderItems_exchange")
+    private String orderItemsExchange;
 
     @Value("payment_routing_key")
     private String paymentRoutingKey;
 
-    @Value("setCart_routing_key")
-    private String setCartRoutingKey;
+    @Value("orderItems_routing_key")
+    private String orderItemsRoutingKey;
 
     @Bean
     public Queue paymentQueue(){
@@ -38,8 +38,8 @@ public class PaymentRMQConfig {
     }
 
     @Bean
-    public Queue setCartQueue(){
-        return new Queue(setCartQueue);
+    public Queue orderItemsQueue(){
+        return new Queue(orderItemsQueue);
     }
 
 
@@ -49,8 +49,8 @@ public class PaymentRMQConfig {
     }
 
     @Bean
-    public TopicExchange setCartExchange(){
-        return new TopicExchange(setCartExchange);
+    public TopicExchange orderItemsExchange(){
+        return new TopicExchange(orderItemsExchange);
     }
 
 
@@ -63,10 +63,10 @@ public class PaymentRMQConfig {
     }
 
     @Bean
-    public Binding setCartBinding(){
+    public Binding orderItemsBinding(){
         return BindingBuilder
-                .bind(setCartQueue())
-                .to(setCartExchange())
-                .with(setCartRoutingKey);
+                .bind(orderItemsQueue())
+                .to(orderItemsExchange())
+                .with(orderItemsRoutingKey);
     }
 }

@@ -17,27 +17,27 @@ public class PaymentService implements IPaymentService {
     private PaymentRepository paymentRepository;
 
     @Override
-    public Order addPayment(Order order) {
+    public Order placeOrder(Order order) {
         return paymentRepository.save(order);
     }
 
     @Override
-    public void removePayment(int id) {
+    public void removeOrder(int id) {
         paymentRepository.deleteById(id);
     }
 
     @Override
-    public List<Order> updatePayment(Order order) {
+    public List<Order> updateOrder(Order order) {
         return paymentRepository.findAll();
     }
 
     @Override
-    public List<Order> getAllPayments() {
+    public List<Order> getAllOrders() {
         return paymentRepository.findAll();
     }
 
     @Override
-    public Order getPaymentById(int id) {
+    public Order getOrderById(int id) {
         return paymentRepository.findById(id);
     }
 

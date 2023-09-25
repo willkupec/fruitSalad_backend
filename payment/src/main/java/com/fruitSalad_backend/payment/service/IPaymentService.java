@@ -6,11 +6,11 @@ import com.fruitSalad_backend.payment.model.OrderItem;
 import java.util.List;
 
 public interface IPaymentService {
-    public Order addPayment(Order order);
-    public void removePayment(int id);
-    public List<Order> updatePayment(Order order);
-    public List<Order> getAllPayments();
-    public Order getPaymentById(int id);
+    public Order placeOrder(Order order);
+    public void removeOrder(int id);
+    public List<Order> updateOrder(Order order);
+    public List<Order> getAllOrders();
+    public Order getOrderById(int id);
     public List<OrderItem> getOrderItems();
     public void setOrderItems(List<OrderItem> orderItems);
 }

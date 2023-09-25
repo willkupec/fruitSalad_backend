@@ -3,7 +3,6 @@ package com.fruitSalad_backend.payment.controller;
 import com.fruitSalad_backend.payment.messaging.PaymentProducer;
 import com.fruitSalad_backend.payment.model.Order;
 import com.fruitSalad_backend.payment.model.OrderItem;
-import com.fruitSalad_backend.payment.model.SharedOrderItems;
 import com.fruitSalad_backend.payment.repository.PaymentRepository;
 import com.fruitSalad_backend.payment.service.IPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class PaymentController {
             System.out.println(e);
         }
         order.setOrderItems(paymentService.getOrderItems());
-        paymentService.addPayment(order);
+        paymentService.placeOrder(order);
         return "Added " + order.toString();
     }
 
@@ -46,14 +45,14 @@ public class PaymentController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        paymentService.removePayment(id);
+        paymentService.removeOrder(id);
         return "Removed payment with id: " + id;
     }
 
     @PutMapping("/{id}")
     @Transactional
     public List<Order> update(@PathVariable int id, @RequestBody Order order) throws Exception {
-        Order existingOrder = paymentService.getPaymentById(id);
+        Order existingOrder = paymentService.getOrderById(id);
 
         if (existingOrder == null) {
             throw new Exception("Payment Not Found");
@@ -80,8 +79,8 @@ public class PaymentController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        paymentService.updatePayment(existingOrder);
-        return paymentService.getAllPayments();
+        paymentService.updateOrder(existingOrder);
+        return paymentService.getAllOrders();
     }
 
     @GetMapping("")
@@ -91,7 +90,7 @@ public class PaymentController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        return paymentService.getAllPayments();
+        return paymentService.getAllOrders();
     }
 
     @GetMapping("/{id}")
@@ -101,6 +100,6 @@ public class PaymentController {
         } catch (Exception e) {
             System.out.println(e);
         }
-        return paymentService.getPaymentById(id);
+        return paymentService.getOrderById(id);
     }
 }

@@ -34,7 +34,7 @@ public class CheckoutController {
         checkoutService.addAddress(address);
         return "Added " + address.toString();
     }
-
+    // add check for address already existing
     @DeleteMapping("/{id}")
     public String remove(@PathVariable("id") int id) {
         try {

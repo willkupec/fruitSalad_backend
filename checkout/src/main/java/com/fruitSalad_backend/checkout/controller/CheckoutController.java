@@ -1,5 +1,6 @@
 package com.fruitSalad_backend.checkout.controller;
 
+import com.fruitSalad_backend.checkout.error.AddressNotFoundException;
 import com.fruitSalad_backend.checkout.messaging.CheckoutProducer;
 import com.fruitSalad_backend.checkout.model.Address;
 import com.fruitSalad_backend.checkout.repository.CheckoutRepository;
@@ -36,7 +37,11 @@ public class CheckoutController {
     }
 
     @DeleteMapping("/{id}")
-    public String remove(@PathVariable("id") int id) {
+    public String remove(@PathVariable("id") int id) throws AddressNotFoundException {
+        if(checkoutService.getAddressById(id) == null) {
+            throw new AddressNotFoundException();
+        }
+
         try {
             checkoutProducer.sendMessage("Removed address");
         } catch (Exception e) {
@@ -48,11 +53,11 @@ public class CheckoutController {
 
     @PutMapping("/{id}")
     @Transactional
-    public List<Address> update(@PathVariable int id, @RequestBody Address addressData) throws Exception {
+    public Address update(@PathVariable int id, @RequestBody Address addressData) throws AddressNotFoundException {
         Address existingAddress = checkoutService.getAddressById(id);
 
         if (existingAddress == null) {
-            throw new Exception("Address Not Found");
+            throw new AddressNotFoundException();
         }
 
         String name = addressData.getName();
@@ -77,7 +82,7 @@ public class CheckoutController {
             System.out.println(e);
         }
         checkoutService.updateAddress(existingAddress);
-        return checkoutService.getAllAddresses();
+        return checkoutService.getAddressById(id);
     }
 
     @GetMapping("")
@@ -91,7 +96,11 @@ public class CheckoutController {
     }
 
     @GetMapping("/{id}")
-    public Address getById(@PathVariable("id") int id) {
+    public Address getById(@PathVariable("id") int id) throws AddressNotFoundException {
+        if(checkoutService.getAddressById(id) == null) {
+            throw new AddressNotFoundException();
+        }
+
         try {
             checkoutProducer.sendMessage("Got address by id");
         } catch (Exception e) {
@@ -101,7 +110,11 @@ public class CheckoutController {
     }
 
     @GetMapping("/customer/{customer}")
-    public Address getByCustomer(@PathVariable("customer") String customer) {
+    public Address getByCustomer(@PathVariable("customer") String customer) throws AddressNotFoundException {
+        if(checkoutService.getAddressByCustomer(customer) == null) {
+            throw new AddressNotFoundException();
+        }
+
         try {
             checkoutProducer.sendMessage("Got address by customer");
         } catch (Exception e) {

@@ -1,8 +1,12 @@
 package com.fruitSalad_backend.cart.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="cart_items")
 public class CartItem implements ICartItem {
     @Id
@@ -11,10 +15,6 @@ public class CartItem implements ICartItem {
     private String title;
     private double price;
     private String src;
-
-    public CartItem() {
-
-    }
 
     @Override
     public int getId() {

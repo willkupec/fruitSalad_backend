@@ -1,8 +1,12 @@
 package com.fruitSalad_backend.checkout.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="addresses")
 public class Address implements IAddress {
     @Id
@@ -11,11 +15,6 @@ public class Address implements IAddress {
     private String customer;
     private String name, address, addressEtc, city, country;
     private int zipCode;
-
-    public Address() {
-
-    }
-
 
     @Override
     public int getId() {

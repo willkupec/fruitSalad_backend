@@ -1,8 +1,12 @@
 package com.fruitSalad_backend.payment.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="order_items")
 public class OrderItem implements IOrderItem {
 
@@ -12,13 +16,7 @@ public class OrderItem implements IOrderItem {
     private String title;
     private double price;
     private int quantity;
-/*    @OneToOne
-    @JoinColumn(e)*/
     private int cartItemId;
-
-    public OrderItem(){
-
-    }
 
     @Override
     public int getId() {

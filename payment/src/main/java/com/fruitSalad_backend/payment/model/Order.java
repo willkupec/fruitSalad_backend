@@ -1,11 +1,15 @@
 package com.fruitSalad_backend.payment.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.math.BigInteger;
 import java.util.List;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="orders")
 public class Order implements IOrder {
     @Id
@@ -18,10 +22,6 @@ public class Order implements IOrder {
     private String customer;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
-
-    public Order() {
-
-    }
 
     @Override
     public int getId() {

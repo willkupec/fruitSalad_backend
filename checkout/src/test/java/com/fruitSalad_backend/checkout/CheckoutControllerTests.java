@@ -16,12 +16,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import static org.hamcrest.Matchers.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @WebMvcTest(CheckoutController.class)
 public class CheckoutControllerTests {
@@ -37,11 +33,6 @@ public class CheckoutControllerTests {
 
     @MockBean
     private CheckoutProducer checkoutProducer;
-
-    @BeforeEach
-    void setUp() {
-
-    }
 
     @Test
     void testAddAddress() throws Exception {

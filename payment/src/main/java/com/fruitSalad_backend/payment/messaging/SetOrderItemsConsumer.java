@@ -20,6 +20,7 @@ public class SetOrderItemsConsumer {
     @Autowired
     private IPaymentService paymentService;
 
+    // maps CartItemDto List to OrderItem List
     @RabbitListener(queues = {"orderItems"})
     public void consume(String message) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Slf4j
 @ControllerAdvice
 public class CheckoutExceptionHandler {
-
+    // used to convert Java Exception into a response code
     @ResponseStatus(HttpStatus.NOT_FOUND) // 404
     @ExceptionHandler(AddressNotFoundException.class)
     public void handleNotFound(AddressNotFoundException ex) {

@@ -29,12 +29,15 @@ public class SetOrderItemsProducer {
     }
 
     public void sendMessage(List<CartItemDto> cartItems) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        String message = objectMapper.writeValueAsString(cartItems);
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String message = objectMapper.writeValueAsString(cartItems);
 
-        System.out.println("hey");
-
-        LOGGER.info(String.format("Message sent -> %s", message));
-        rabbitTemplate.convertAndSend(exchange, routingKey, message);
+            LOGGER.info(String.format("Message sent -> %s", message));
+            rabbitTemplate.convertAndSend(exchange, routingKey, message);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }

@@ -14,8 +14,8 @@ public interface IOrder {
     public void setNumber(BigInteger number);
     public String getExpiryDate();
     public void setExpiryDate(String expiryDate);
-    public int getCVV();
-    public void setCVV(int cvv);
+    public int getCvv();
+    public void setCvv(int cvv);
     public String getCustomer();
     public void setCustomer(String customer);
     public List<OrderItem> getOrderItems();

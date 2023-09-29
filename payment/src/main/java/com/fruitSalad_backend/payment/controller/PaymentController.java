@@ -28,25 +28,17 @@ public class PaymentController {
 
     @PostMapping("")
     public String add(@RequestBody Order order) {
-        try {
-            paymentProducer.sendMessage("Added payment");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
         order.setOrderItems(paymentService.getOrderItems());
         paymentService.placeOrder(order);
-        return "Added " + order.toString();
+        paymentProducer.sendMessage("Order placed");
+        return "Placed order: " + order.toString();
     }
 
     @DeleteMapping("/{id}")
     public String remove(@PathVariable("id") int id) {
-        try {
-            paymentProducer.sendMessage("Removed payment");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
         paymentService.removeOrder(id);
-        return "Removed payment with id: " + id;
+        paymentProducer.sendMessage("Removed order");
+        return "Removed order with id: " + id;
     }
 
     @PutMapping("/{id}")
@@ -55,14 +47,14 @@ public class PaymentController {
         Order existingOrder = paymentService.getOrderById(id);
 
         if (existingOrder == null) {
-            throw new Exception("Payment Not Found");
+            throw new Exception("Order Not Found");
         }
 
         double totalPrice = order.getTotalPrice();
         String name = order.getName();
         BigInteger number = order.getNumber();
         String expiryDate = order.getExpiryDate();
-        int cvv = order.getCVV();
+        int cvv = order.getCvv();
         String customer = order.getCustomer();
         List<OrderItem> orderItems = order.getOrderItems();
 
@@ -70,36 +62,24 @@ public class PaymentController {
         existingOrder.setName(name);
         existingOrder.setNumber(number);
         existingOrder.setExpiryDate(expiryDate);
-        existingOrder.setCVV(cvv);
+        existingOrder.setCvv(cvv);
         existingOrder.setCustomer(customer);
         existingOrder.setOrderItems(orderItems);
 
-        try {
-            paymentProducer.sendMessage("Updated payment");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
         paymentService.updateOrder(existingOrder);
+        paymentProducer.sendMessage("Updated order");
         return paymentService.getAllOrders();
     }
 
     @GetMapping("")
     public List<Order> list(){
-        try {
-            paymentProducer.sendMessage("Listed all payments");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        paymentProducer.sendMessage("Listed all orders");
         return paymentService.getAllOrders();
     }
 
     @GetMapping("/{id}")
     public Order getById(@PathVariable("id") int id) {
-        try {
-            paymentProducer.sendMessage("Got payment by id");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        paymentProducer.sendMessage("Got order by id");
         return paymentService.getOrderById(id);
     }
 }

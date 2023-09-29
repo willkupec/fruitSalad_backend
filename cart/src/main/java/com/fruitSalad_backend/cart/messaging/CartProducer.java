@@ -24,7 +24,12 @@ public class CartProducer {
     }
 
     public void sendMessage(String message){
-        LOGGER.info(String.format("Message sent -> %s", message));
-        rabbitTemplate.convertAndSend(exchange, routingKey, message);
+        try {
+            LOGGER.info(String.format("Message sent -> %s", message));
+            rabbitTemplate.convertAndSend(exchange, routingKey, message);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }
